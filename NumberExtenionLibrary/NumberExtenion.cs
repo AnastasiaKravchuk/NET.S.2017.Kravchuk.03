@@ -11,8 +11,8 @@ namespace Logic
         /// <summary>
         /// Method Swap exchanges two elements in the array
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">The first element to be swapped</param>
+        /// <param name="b">The second element to be swapped</param>
         private static void Swap(ref char a, ref char b)
         {
             char temp = a;
@@ -20,6 +20,11 @@ namespace Logic
             b = temp;
         }
 
+        /// <summary>
+        /// Method CreateCharArray returnes array of digits of given number
+        /// </summary>
+        /// <param name="n">Number to be splitted into digits</param>
+        /// <returns></returns>
         private static char[] CreateCharArray(int n)
         {
             string s = n.ToString();
@@ -28,6 +33,11 @@ namespace Logic
         }
 
 
+        /// <summary>
+        /// Method FindNext returns an array of digits of the next greatest number
+        /// </summary>
+        /// <param name="arr">Array of digits of given number</param>
+        /// <returns></returns>
         private static char[] FindNext(char[] arr)
         {
             int i; int j;
@@ -59,6 +69,11 @@ namespace Logic
             return arr;
         }
 
+        /// <summary>
+        /// Method ConvertArrayToString returns string representation of given array
+        /// </summary>
+        /// <param name="arr">Array of digits</param>
+        /// <returns></returns>
         private static string ConvertArrayTostring(char[] arr)
         {
             string s = new string(arr);
@@ -66,6 +81,11 @@ namespace Logic
             return s;
         }
 
+        /// <summary>
+        /// The wrapping method for FindNear.
+        /// </summary>
+        /// <param name="number">Argument "number" of FindNearWrapper</param>
+        /// <returns></returns>
         public static string FindNearWrapper(int number)
         {
             char[] array = FindNext(CreateCharArray(number));
