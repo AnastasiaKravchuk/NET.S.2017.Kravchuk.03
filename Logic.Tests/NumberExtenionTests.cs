@@ -88,7 +88,6 @@ namespace Logic.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void FindNearWrapper_10_ReturnMinusOne()
         {
             int input = 10;
@@ -101,7 +100,6 @@ namespace Logic.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void FindNearWrapper_20_ReturnMinusOne()
         {
             int input = 20;
