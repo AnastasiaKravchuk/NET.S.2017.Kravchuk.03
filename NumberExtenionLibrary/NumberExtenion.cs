@@ -3,11 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Math;
 
 namespace Logic
 {
     public class NumberExtenion
     {
+
+        #region PublicMethod
+        /// <summary>
+        /// The wrapping method for FindNear.
+        /// </summary>
+        /// <param name="number">Argument "number" of FindNearWrapper</param>
+        /// <returns></returns>
+        public static string FindNearWrapper(int number)
+        {
+            char[] array = FindNext(CreateCharArray(number));
+            if (array[0] == '0')
+            {
+                return "-1";
+            }
+            return ConvertArrayTostring((array));
+        }
+
+        /// <summary>
+        /// Method to find nth root of a given number with precise accuracy
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="n"></param>
+        /// <param name="eps"></param>
+        /// <returns></returns>
+        public static double NewtonMethod(double number, int n, double eps)
+        {
+            if (n <= 0 || eps <= 0)
+            {
+                throw new ArgumentOutOfRangeException("The power of root or eps are less or equal 0");
+            }
+
+            if ((number <= 0) && (n % 2) == 0)
+            {
+                throw new ArgumentException("Can't get a even root of a negative number!");
+            }
+
+            double prev = number;
+
+            double delta = ((number / Pow(prev, n - 1)) - prev) / n;
+            double next = prev + delta; 
+            while (Abs(delta) > eps)
+            {
+                prev = next;
+                delta = ((number / Pow(prev, n - 1)) - prev) / n;
+                next = prev + delta;
+            }
+            return next;
+        }
+
+        #endregion
+
+        #region PrivateMethods
         /// <summary>
         /// Method Swap exchanges two elements in the array
         /// </summary>
@@ -80,20 +133,6 @@ namespace Logic
 
             return s;
         }
-
-        /// <summary>
-        /// The wrapping method for FindNear.
-        /// </summary>
-        /// <param name="number">Argument "number" of FindNearWrapper</param>
-        /// <returns></returns>
-        public static string FindNearWrapper(int number)
-        {
-            char[] array = FindNext(CreateCharArray(number));
-            if (array[0] == '0')
-            {
-                return "-1";
-            }
-            return ConvertArrayTostring((array));
-        }
+        #endregion
     }
 }

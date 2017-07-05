@@ -68,6 +68,16 @@ namespace Logic.Tests
         }
 
         [TestMethod]
+        public void FindNearWrapper_1204321_ReturnTrue()
+        {
+            int input = 1204321;
+            string expected = "1210234";
+            string result = FindNearWrapper(input);
+
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
         public void FindNearWrapper_1234126_ReturnTrue()
         {
             int input = 1234126;
@@ -109,6 +119,78 @@ namespace Logic.Tests
 
             Assert.AreEqual(expected, result);
 
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void NewtonMethod_EvenRootOfNegativeNumber_ReturnException()
+        {
+            double inputNumber = -19683;
+            int inputPower = 2;
+            double eps = 0.000001;
+
+            double result = NewtonMethod(inputNumber, inputPower, eps);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void NewtonMethod_NegativePower_ReturnException()
+        {
+            double inputNumber = 83;
+            int inputPower = -4;
+            double eps = 0.000001;
+
+            double result = NewtonMethod(inputNumber, inputPower, eps);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void NewtonMethod_NegativeEps_ReturnException()
+        {
+            double inputNumber = 83;
+            int inputPower = 3;
+            double eps = -0.000001;
+
+            double result = NewtonMethod(inputNumber, inputPower, eps);
+        }
+
+        [TestMethod]
+        public void NewtonMethod_2of4_ReturnTrue()
+        {
+            double inputNumber = 4;
+            int inputPower = 2;
+            double eps = 0.000001;
+            double expected = 2;
+
+            double result = NewtonMethod(inputNumber, inputPower, eps);
+
+            Assert.AreEqual(expected, result, eps);
+        }
+
+        [TestMethod]
+        public void NewtonMethod_2of225_ReturnTrue()
+        {
+            double inputNumber = 225;
+            int inputPower = 2;
+            double eps = 0.000001;
+            double expected = 15;
+
+            double result = NewtonMethod(inputNumber, inputPower, eps);
+
+            Assert.AreEqual(expected, result, eps);
+        }
+
+        [TestMethod]
+        public void NewtonMethod_7of988_ReturnTrue()
+        {
+            double inputNumber = 988;
+            int inputPower = 7;
+            double eps = 0.000000001;
+            double expected = 2.67807305946292;
+
+            double result = NewtonMethod(inputNumber, inputPower, eps);
+
+            Assert.AreEqual(expected, result, eps);
         }
     }
 }
